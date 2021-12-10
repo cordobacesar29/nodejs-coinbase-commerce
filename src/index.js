@@ -1,5 +1,7 @@
 const express = require('express');
 const {Client, resources, Webhook} = require('coinbase-commerce-node');
+const cors = require("cors");
+const path = require("path");
 const morgan = require('morgan');
 const {
   COINBASE_API_KEY,
@@ -15,7 +17,9 @@ const {Charge} = resources;
 
 const app = express();
 
+app.use(cors());
 app.use(morgan('dev'));
+
 app.use(
   express.json({
     verify: (req, res, buf) => {
