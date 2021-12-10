@@ -8,8 +8,6 @@ const {
   COINBASE_WEBHOOK_SECRET,
   DOMAIN
 } = require ('./config');
-const { path } = require('express/lib/application');
-
 
 Client.init(COINBASE_API_KEY);
 
