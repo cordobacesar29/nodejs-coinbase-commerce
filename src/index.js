@@ -6,6 +6,7 @@ const {
   COINBASE_WEBHOOK_SECRET,
   DOMAIN
 } = require ('./config');
+const { path } = require('express/lib/application');
 
 
 Client.init(COINBASE_API_KEY);
@@ -74,11 +75,15 @@ app.post('/payment-handler', (req, res) => {
 
 app.get('/success-payment', (req, res) => {
   res.send('Payment successfull')
-})
+});
 
 app.get('/cancel-payment', (req, res) => {
   res.send('Cancel Payment')
-})
+});
 
-app.listen(3000);
-console.log("server on port", 3000);
+app.use(express.static(path.join(__dirname, "public")));
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT);
+console.log("server on port", PORT);
